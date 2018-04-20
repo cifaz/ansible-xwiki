@@ -1,0 +1,34 @@
+
+- name: need to install tomcat
+  import_tasks: install-tomat.yml
+
+- name: download xwiki war
+  get_url:
+    url: "{{xwiki_download_url}}"
+    dest: "{{/app/down/xwiki}}/{{xwiki_war}}"
+
+- name: copy xwiki.war to tomcat
+  copy:
+    src: "{{/app/down/xwiki}}/{{xwiki_war}}"
+    dest: "{{xwiki_tomcat_app_dir}}/{{xwiki_tomcat_war_name}}"
+
+- name: unzip xwiki.war
+  shell: "cd {{xwiki_tomcat_app_dir}} && unzip {{xwiki_tomcat_run_name}} ./{{xwiki_tomcat_war_name}} "
+  with_items:
+    - unzip
+    - zip
+
+- name: copy xwiki config
+  copy:
+    src: xwiki.cfg.j2
+    dest: "{{xwiki_tomcat_app_dir}}/{{xwiki_tomcat_run_name}}/WEB_INF/xwifi.cfg"
+
+- name: check db is ok?
+
+- name: check tomcat is started
+  shell: "ps -ef|grep {{xwiki_tomcat_app_dir}}"
+  register: tomcat_not_start || false
+
+- name: start tomcat if not started
+  shell: "cd {{xwiki_tomcat_app_dir}} && cd ../bin/startup.sh"
+  when: tomcat_not_start

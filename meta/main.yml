@@ -1,0 +1,15 @@
+---
+
+dependencies: []
+galaxy_info:
+  author: ccz
+  description: xwiki知识协作管理
+  license: MIT
+  min_ansible_version: 2.2
+  platforms:
+  - name: EL
+    versions:
+    - 7
+  galaxy_tags:
+    - xwiki
+    - 知识协作管理

@@ -1,0 +1,4 @@
+# emtpy
+---
+xwiki_download_url: http://download.forge.ow2.org/xwiki/{{xwiki_war}}
+xwiki_war: xwiki-{{xwiki_version}}.war
