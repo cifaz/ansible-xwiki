@@ -23,12 +23,12 @@
     src: xwiki.cfg.j2
     dest: "{{xwiki_tomcat_app_dir}}/{{xwiki_tomcat_run_name}}/WEB_INF/xwifi.cfg"
 
-- name: check db is ok?
-
-- name: check tomcat is started
-  shell: "ps -ef|grep {{xwiki_tomcat_app_dir}}"
-  register: tomcat_not_start || false
-
-- name: start tomcat if not started
-  shell: "cd {{xwiki_tomcat_app_dir}} && cd ../bin/startup.sh"
-  when: tomcat_not_start
+#- name: check db is ok?
+#
+#- name: check tomcat is started
+#  shell: "ps -ef|grep {{xwiki_tomcat_app_dir}}"
+#  register: tomcat_not_start || false
+#
+#- name: start tomcat if not started
+#  shell: "cd {{xwiki_tomcat_app_dir}} && cd ../bin/startup.sh"
+#  when: tomcat_not_start
