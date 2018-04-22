@@ -1,6 +1,6 @@
 
 - name: need to install tomcat
-  import_include: install-tomat.yml
+  include_tasks: install-tomat.yml
 
 - name: download xwiki war
   get_url:
