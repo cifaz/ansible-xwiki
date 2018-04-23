@@ -20,7 +20,7 @@
     remote_src: yes
     owner: tomcat
     group: tomcat
-    mode: 0700
+    mode: 0777
 
 - name: unzip xwiki.war
   shell: "cd {{xwiki_tomcat_app_dir}} && unzip -f ./{{xwiki_tomcat_war_name}} -d {{xwiki_tomcat_run_name}}  "
@@ -34,6 +34,7 @@
     dest: "{{xwiki_tomcat_app_dir}}/{{xwiki_tomcat_run_name}}/WEB-INF/xwifi.cfg"
     owner: tomcat
     group: tomcat
+    mode: 0777
 
 - name: check db is ok?
   debug:
@@ -45,6 +46,7 @@
     dest: "{{xwiki_tomcat_app_dir}}/{{xwiki_tomcat_run_name}}/WEB-INF/lib"
     owner: tomcat
     group: tomcat
+    mode: 0777
 
 - name: check tomcat is started
   shell: "ps -ef|grep {{xwiki_tomcat_app_dir}}"
