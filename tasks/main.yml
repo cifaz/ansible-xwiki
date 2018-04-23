@@ -52,4 +52,4 @@
 
 - name: start tomcat if not started
   shell: "cd {{xwiki_tomcat_app_dir}} && cd ../bin/startup.sh"
-  when: tomcat_not_start || true
+  when: true
