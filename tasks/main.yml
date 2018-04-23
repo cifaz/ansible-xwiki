@@ -22,7 +22,7 @@
     - zip
 
 - name: copy xwiki config
-  copy:
+  template:
     src: xwiki.cfg.j2
     dest: "{{xwiki_tomcat_app_dir}}/{{xwiki_tomcat_run_name}}/WEB_INF/xwifi.cfg"
 
