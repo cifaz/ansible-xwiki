@@ -16,7 +16,7 @@
     mode: 0700
 
 - name: unzip xwiki.war
-  shell: "cd {{xwiki_tomcat_app_dir}} && unzip {{xwiki_tomcat_run_name}} ./{{xwiki_tomcat_war_name}} "
+  shell: "cd {{xwiki_tomcat_app_dir}} && unzip ./{{xwiki_tomcat_war_name}} {{xwiki_tomcat_run_name}}  "
   with_items:
     - unzip
     - zip
