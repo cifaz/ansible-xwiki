@@ -22,8 +22,6 @@
     - zip
 
 - name: copy xwiki config
-  debug:
-    msg: "{{xwiki_tomcat_app_dir}}/{{xwiki_tomcat_run_name}}/WEB-INF/xwifi.cfg"
   template:
     src: xwiki.cfg.j2
     dest: "{{xwiki_tomcat_app_dir}}/{{xwiki_tomcat_run_name}}/WEB-INF/xwifi.cfg"
