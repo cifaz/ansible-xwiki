@@ -18,8 +18,8 @@
     src: "{{xwiki_download_dir}}/{{xwiki_war}}"
     dest: "{{xwiki_tomcat_app_dir}}/{{xwiki_tomcat_war_name}}"
     remote_src: yes
-    owner: root
-    group: root
+    owner: tomcat
+    group: tomcat
     mode: 0700
 
 - name: unzip xwiki.war
@@ -32,6 +32,8 @@
   template:
     src: xwiki.cfg.j2
     dest: "{{xwiki_tomcat_app_dir}}/{{xwiki_tomcat_run_name}}/WEB-INF/xwifi.cfg"
+    owner: tomcat
+    group: tomcat
 
 - name: check db is ok?
   debug:
@@ -41,6 +43,8 @@
   copy:
     src: hsqldb.jar
     dest: "{{xwiki_tomcat_app_dir}}/{{xwiki_tomcat_run_name}}/WEB-INF/lib"
+    owner: tomcat
+    group: tomcat
 
 - name: check tomcat is started
   shell: "ps -ef|grep {{xwiki_tomcat_app_dir}}"
