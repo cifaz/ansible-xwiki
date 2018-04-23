@@ -24,7 +24,7 @@
 - name: copy xwiki config
   template:
     src: xwiki.cfg.j2
-    dest: "{{xwiki_tomcat_app_dir}}/{{xwiki_tomcat_run_name}}/WEB_INF/xwifi.cfg"
+    dest: "{{xwiki_tomcat_app_dir}}/{{xwiki_tomcat_run_name}}/WEB-INF/xwifi.cfg"
 
 #- name: check db is ok?
 #
