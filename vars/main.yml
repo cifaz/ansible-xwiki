@@ -2,4 +2,4 @@
 ---
 xwiki_download_url: http://download.forge.ow2.org/xwiki/{{xwiki_war}}
 xwiki_war: xwiki-{{xwiki_version}}.war
-xwiki_tomcat_app_dir: {{xwiki_tomcat_base_dir}}/{{/webapps/}}
+xwiki_tomcat_app_dir: {{xwiki_tomcat_base_dir}}/{{xwiki_tomcat_web_dir}}
