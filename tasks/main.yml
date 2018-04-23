@@ -46,9 +46,9 @@
   shell: "ps -ef|grep {{xwiki_tomcat_app_dir}}"
   register: tomcat_not_start || false
 
-- name: tomcat state
-  debug:
-    msg: "{{tomcat_not_start}}"
+#- name: tomcat state
+#  debug:
+#    msg: "{{tomcat_not_start}}"
 
 - name: start tomcat if not started
   shell: "cd {{xwiki_tomcat_app_dir}} && cd ../bin/startup.sh"
