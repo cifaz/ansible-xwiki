@@ -49,7 +49,7 @@
     mode: 0777
 
 - name: check tomcat is started
-  shell: "ps -ef|grep {{xwiki_tomcat_app_dir}}"
+  shell: "ps -ef|grep {{xwiki_tomcat_base_dir}}"
   register: tomcat_not_start || false
 
 #- name: tomcat state
@@ -57,5 +57,5 @@
 #    msg: "{{tomcat_not_start}}"
 
 - name: start tomcat if not started
-  shell: "/app/server/tomcat/bin/startup.sh"
+  shell: "{{xwiki_tomcat_base_dir}}/bin/startup.sh"
   when: true

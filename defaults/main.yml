@@ -6,7 +6,8 @@ xwiki_download_dir: /app/down/xwiki
 # 是否自动安装tomcat
 xwiki_tomcat_install: false
 # war包存放地址
-xwiki_tomcat_app_dir: /app/server/tomcat/webapps
+xwiki_tomcat_base_dir: /app/server/tomcat/
+xwiki_tomcat_web_dir: /webapps/
 xwiki_tomcat_war_name: xwiki.war
 xwiki_tomcat_run_name: xwiki/
 xwiki_admin_open: true
