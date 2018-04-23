@@ -2,6 +2,12 @@
 #- name: need to install tomcat
 #  include: install-tomat.yml
 
+
+- name: check dir is exists, if not, mkdir it
+  file:
+    path: "{{xwiki_download_dir}}"
+    state: directory
+
 - name: download xwiki war
   get_url:
     url: "{{xwiki_download_url}}"
@@ -11,6 +17,7 @@
   copy:
     src: "{{xwiki_download_dir}}/{{xwiki_war}}"
     dest: "{{xwiki_tomcat_app_dir}}/{{xwiki_tomcat_war_name}}"
+    remote_src: yes
     owner: root
     group: root
     mode: 0700
@@ -26,12 +33,19 @@
     src: xwiki.cfg.j2
     dest: "{{xwiki_tomcat_app_dir}}/{{xwiki_tomcat_run_name}}/WEB-INF/xwifi.cfg"
 
-#- name: check db is ok?
-#
-#- name: check tomcat is started
-#  shell: "ps -ef|grep {{xwiki_tomcat_app_dir}}"
-#  register: tomcat_not_start || false
-#
-#- name: start tomcat if not started
-#  shell: "cd {{xwiki_tomcat_app_dir}} && cd ../bin/startup.sh"
-#  when: tomcat_not_start
+- name: check db is ok?
+  debug:
+    msg: use hsqldb, if you want to use mysql or other, please copy db diriver and change hibernate.cfg.xml
+
+- name: copy hsqldb driver to xwiki
+  copy:
+    src: hsqldb.jar
+    dest: "{{xwiki_tomcat_app_dir}}/{{xwiki_tomcat_run_name}}/WEB-INF/"
+
+- name: check tomcat is started
+  shell: "ps -ef|grep {{xwiki_tomcat_app_dir}}"
+  register: tomcat_not_start || false
+
+- name: start tomcat if not started
+  shell: "cd {{xwiki_tomcat_app_dir}} && cd ../bin/startup.sh"
+  when: tomcat_not_start
