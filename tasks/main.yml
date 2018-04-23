@@ -40,12 +40,16 @@
 - name: copy hsqldb driver to xwiki
   copy:
     src: hsqldb.jar
-    dest: "{{xwiki_tomcat_app_dir}}/{{xwiki_tomcat_run_name}}/WEB-INF/"
+    dest: "{{xwiki_tomcat_app_dir}}/{{xwiki_tomcat_run_name}}/WEB-INF/lib"
 
 - name: check tomcat is started
   shell: "ps -ef|grep {{xwiki_tomcat_app_dir}}"
   register: tomcat_not_start || false
 
+- name: tomcat state
+  debug:
+    msg: "{{tomcat_not_start}}"
+
 - name: start tomcat if not started
   shell: "cd {{xwiki_tomcat_app_dir}} && cd ../bin/startup.sh"
-  when: tomcat_not_start
+  when: tomcat_not_start || true
